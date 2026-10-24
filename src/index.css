@@ -1,0 +1,67 @@
+@import "tailwindcss";
+
+:root {
+  --color-navy-950: #0b1324;
+  --color-navy-900: #111c33;
+  --color-navy-800: #182445;
+  --color-navy-700: #223160;
+  --color-navy-600: #2d4080;
+
+  --color-surface: #f6f7fb;
+  --color-surface-raised: #ffffff;
+  --color-border: #e2e5ee;
+
+  --color-ink-900: #0f1626;
+  --color-ink-700: #3a4258;
+  --color-ink-500: #6b7280;
+
+  --color-crimson-600: #b91c3c;
+  --color-crimson-500: #d6264a;
+  --color-crimson-100: #fbe4e9;
+
+  --color-success-600: #15803d;
+  --color-success-100: #dcfce7;
+  --color-warning-600: #b45309;
+  --color-warning-100: #fef3c7;
+  --color-danger-600: #b91c1c;
+  --color-danger-100: #fee2e2;
+
+  color-scheme: light;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html, body, #root {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  background: var(--color-surface);
+  color: var(--color-ink-900);
+  font-family: "Segoe UI", system-ui, -apple-system, "Inter", sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+
+button {
+  font-family: inherit;
+}
+
+.scroll-region {
+  overflow-y: auto;
+  overscroll-behavior: contain;
+}
+
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+::-webkit-scrollbar-thumb {
+  background: #cbd2e1;
+  border-radius: 6px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
