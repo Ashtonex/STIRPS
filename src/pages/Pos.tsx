@@ -281,6 +281,12 @@ export function Pos() {
             </div>
           )}
 
+          {cart.channel === "wholesale" && !cart.customerId && cartRows.length > 0 && (
+            <div className="mt-2 rounded-md bg-[var(--color-warning-100)] px-3 py-2 text-xs text-[var(--color-warning-600)]">
+              Select a wholesale customer above before you can charge this sale.
+            </div>
+          )}
+
           <div className="mt-2 flex items-center justify-between text-base font-semibold">
             <span>Total</span>
             <span>{formatMoney(totalCents)}</span>
