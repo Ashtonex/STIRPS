@@ -70,9 +70,21 @@ export async function isSeeded(): Promise<boolean> {
   return Boolean(meta?.value);
 }
 
+// Guards against concurrent seeding when the same module runs the check twice in a short window
+// (e.g. React StrictMode's intentional double-invocation of effects in development). The guard is
+// set synchronously before any `await` so two back-to-back calls can never both see it unset.
+let seedingPromise: Promise<void> | null = null;
+
 export async function seedIfEmpty(): Promise<void> {
-  if (await isSeeded()) return;
-  await seedDatabase();
+  if (!seedingPromise) {
+    seedingPromise = (async () => {
+      if (await isSeeded()) return;
+      await seedDatabase();
+    })().finally(() => {
+      seedingPromise = null;
+    });
+  }
+  await seedingPromise;
 }
 
 export async function resetDemo(): Promise<void> {
